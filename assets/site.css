@@ -1,0 +1,377 @@
+/* ============================================================
+   Eden Hallett — ePortfolio
+   Design concept: the visual language of a survey / engineering
+   drawing sheet — hairline rules, corner tick marks, a title
+   block, and restrained marginal annotations — reinterpreted
+   as a web layout. Ties the site's form to Eden's own work in
+   geospatial measurement and technical documentation.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root{
+  --paper:   #EEF0E9;
+  --panel:   #E4E7DC;
+  --ink:     #202A22;
+  --ink-60:  #4B564C;
+  --slate:   #2F5F66;
+  --slate-d: #22474D;
+  --clay:    #93602E;
+  --line:    #C9CFC0;
+  --line-strong: #9AA492;
+  --max: 46rem;
+  --wide: 64rem;
+}
+
+*, *::before, *::after{ box-sizing: border-box; }
+
+html{ scroll-behavior: smooth; }
+
+body{
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3{
+  font-family: 'IBM Plex Serif', Georgia, serif;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.18;
+  margin: 0 0 0.5em;
+  letter-spacing: -0.01em;
+}
+
+h1{ font-size: clamp(2.1rem, 4.2vw, 3.4rem); font-weight: 600; }
+h2{ font-size: clamp(1.35rem, 2.4vw, 1.7rem); }
+h3{ font-size: 1.1rem; font-weight: 600; }
+
+p{ margin: 0 0 1.1em; max-width: 38rem; }
+a{ color: var(--slate-d); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover{ color: var(--clay); }
+a:focus-visible, button:focus-visible{
+  outline: 2px solid var(--slate-d);
+  outline-offset: 3px;
+}
+
+.mono{ font-family: 'IBM Plex Mono', monospace; }
+
+.meta{
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-60);
+}
+
+/* ---------- corner tick marks (drawing-sheet reference marks) --- */
+.ticked{
+  position: relative;
+}
+.ticked::before, .ticked::after,
+.ticked .tick-br, .ticked .tick-bl{
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 1.4px solid var(--line-strong);
+}
+.ticked::before{ top: -1px; left: -1px; border-right: none; border-bottom: none; }
+.ticked::after{ top: -1px; right: -1px; border-left: none; border-bottom: none; }
+.ticked .tick-bl{ bottom: -1px; left: -1px; border-right: none; border-top: none; }
+.ticked .tick-br{ bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+/* ---------- top nav — reads like a drawing sheet's index strip - */
+.sitehead{
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  background: rgba(238,240,233,0.92);
+  backdrop-filter: blur(6px);
+  z-index: 20;
+}
+.sitehead-inner{
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: 0.85rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.brand{
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'IBM Plex Serif', serif;
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.brand:hover{ color: var(--ink); }
+.brand-mark{
+  width: 15px; height: 15px;
+  border: 1.4px solid var(--slate);
+  position: relative;
+  flex: none;
+}
+.brand-mark::before, .brand-mark::after{
+  content:"";
+  position: absolute;
+  background: var(--slate);
+}
+.brand-mark::before{ top: 50%; left: 50%; width: 9px; height: 1.4px; transform: translate(-50%,-50%); }
+.brand-mark::after{ top: 50%; left: 50%; width: 1.4px; height: 9px; transform: translate(-50%,-50%); }
+
+.nav{
+  display: flex;
+  gap: 1.4rem;
+  font-size: 0.92rem;
+  flex-wrap: wrap;
+}
+.nav a{
+  color: var(--ink-60);
+  text-decoration: none;
+  padding: 0.2rem 0;
+  border-bottom: 1px solid transparent;
+}
+.nav a:hover{ color: var(--ink); border-color: var(--line-strong); }
+.nav a[aria-current="page"]{
+  color: var(--ink);
+  border-color: var(--slate);
+}
+
+/* ---------- layout shells ---------- */
+main{ max-width: var(--wide); margin: 0 auto; padding: 0 1.5rem; }
+.narrow{ max-width: var(--max); }
+
+section{ padding: 3.4rem 0; }
+section + section{ border-top: 1px solid var(--line); }
+
+.rule{
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 0;
+}
+
+.rule-ticked{
+  height: 1px;
+  background: var(--line);
+  margin: 0;
+  position: relative;
+}
+.rule-ticked::before{
+  content: "";
+  position: absolute;
+  left: 0; top: -3px;
+  width: 1px; height: 7px;
+  background: var(--line-strong);
+}
+.rule-ticked::after{
+  content: "";
+  position: absolute;
+  right: 0; top: -3px;
+  width: 1px; height: 7px;
+  background: var(--line-strong);
+}
+
+/* ---------- hero ---------- */
+.hero{ padding: 3.6rem 0 3rem; }
+.hero .kicker{
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--slate-d);
+  margin-bottom: 1rem;
+  letter-spacing: 0.02em;
+}
+.hero p.lead{
+  font-size: 1.12rem;
+  color: var(--ink-60);
+  max-width: 34rem;
+}
+
+/* ---------- panel (title-block style bordered box) ---------- */
+.panel{
+  border: 1px solid var(--line-strong);
+  background: var(--panel);
+  padding: 1.8rem 2rem;
+}
+.panel h3{ margin-bottom: 0.6rem; }
+.panel p:last-child{ margin-bottom: 0; }
+
+.panel-row{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.2rem;
+}
+@media (max-width: 640px){
+  .panel-row{ grid-template-columns: 1fr; }
+}
+
+/* ---------- two-column CV layout ---------- */
+.cv-grid{
+  display: grid;
+  grid-template-columns: 15.5rem 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+@media (max-width: 780px){
+  .cv-grid{ grid-template-columns: 1fr; }
+}
+
+.side-block{ margin-bottom: 2.1rem; }
+.side-block h3{
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--slate-d);
+  margin-bottom: 0.7rem;
+}
+.side-block ul{ margin: 0; padding-left: 0; list-style: none; }
+.side-block li{ margin-bottom: 0.35rem; font-size: 0.94rem; color: var(--ink-60); }
+.side-block a{ color: var(--ink-60); }
+.side-block a:hover{ color: var(--clay); }
+
+.entry{ margin-bottom: 1.9rem; }
+.entry:last-child{ margin-bottom: 0; }
+.entry-head{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.25rem;
+}
+.entry-head h3{ margin: 0; }
+.entry-org{ color: var(--ink-60); font-size: 0.95rem; margin-bottom: 0.5rem; }
+.entry-when{
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.76rem;
+  color: var(--ink-60);
+  white-space: nowrap;
+}
+.entry ul{ margin: 0.4em 0 0; padding-left: 1.1em; }
+.entry li{ margin-bottom: 0.35em; color: var(--ink-60); }
+
+.chips{ display: flex; flex-wrap: wrap; gap: 0.4rem 0.5rem; }
+.chip{
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.74rem;
+  border: 1px solid var(--line-strong);
+  padding: 0.18rem 0.55rem;
+  color: var(--ink-60);
+}
+
+/* ---------- Q&A blocks (reflection) ---------- */
+.qa{ margin-bottom: 2.6rem; }
+.qa:last-child{ margin-bottom: 0; }
+.qa .qnum{
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.76rem;
+  color: var(--slate-d);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.qa h2{ font-size: 1.2rem; margin-bottom: 0.7rem; }
+.qa p{ max-width: 40rem; }
+
+figure{ margin: 1.6rem 0; }
+figure img{
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--line-strong);
+}
+figcaption{
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--ink-60);
+  margin-top: 0.5rem;
+}
+
+/* ---------- criteria blocks (cover letter) ---------- */
+.criterion{ margin-bottom: 2.2rem; }
+.criterion:last-child{ margin-bottom: 0; }
+.criterion .ctag{
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.76rem;
+  color: var(--slate-d);
+  border: 1px solid var(--line-strong);
+  padding: 0.12rem 0.5rem;
+  display: inline-block;
+  margin-bottom: 0.7rem;
+}
+.criterion h2{ font-size: 1.12rem; margin-bottom: 0.55rem; }
+.criterion p{ max-width: 42rem; }
+
+.letter-head{
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  padding-bottom: 1.6rem;
+  border-bottom: 1px solid var(--line);
+}
+.letter-head .to{ max-width: 26rem; }
+.letter-head .date{ font-family: 'IBM Plex Mono', monospace; font-size: 0.82rem; color: var(--ink-60); }
+
+.print-btn{
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.76rem;
+  color: var(--slate-d);
+  background: none;
+  border: 1px solid var(--line-strong);
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+}
+.print-btn:hover{ border-color: var(--slate-d); }
+
+/* ---------- title-block footer ---------- */
+.titleblock{
+  border-top: 1px solid var(--line-strong);
+  margin-top: 2rem;
+}
+.titleblock-inner{
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: 1.3rem 1.5rem 2.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 2rem;
+  justify-content: space-between;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--ink-60);
+  letter-spacing: 0.02em;
+}
+.titleblock-inner span b{ color: var(--ink); font-weight: 500; }
+.titleblock a{ color: var(--ink-60); }
+.titleblock a:hover{ color: var(--clay); }
+
+/* ---------- inline in-content link callout ---------- */
+.crossref{
+  margin-top: 1.6rem;
+  font-size: 0.96rem;
+}
+
+/* ---------- print (CV) ---------- */
+@media print{
+  .sitehead, .titleblock, .print-btn{ display: none !important; }
+  body{ background: #fff; font-size: 12px; }
+  section{ padding: 0.6rem 0; }
+  section + section{ border-top: none; }
+  a{ color: var(--ink); text-decoration: none; }
+  .panel{ background: #fff; }
+}
+
+@media (max-width: 560px){
+  .sitehead-inner{ flex-direction: column; align-items: flex-start; gap: 0.6rem; }
+  .nav{ gap: 1rem; font-size: 0.86rem; }
+}
