@@ -1,22 +1,23 @@
 /* ============================================================
    Eden Hallett — ePortfolio
    Design concept: a single sheet from an engineering drawing set,
-   laid on a dark drafting table. The table carries colour, depth
-   and a faint layered grid; the sheet itself — where every word
-   of Eden's content lives — stays a plain, single, legible colour.
+   laid on a green drafting table. The table carries colour and
+   depth; the sheet itself — where every word of Eden's content
+   lives — stays a plain, single, legible colour.
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
 
 :root{
-  --table:    #16231F;
-  --table-2:  #1D2E28;
+  --table:    #4E7F63;
+  --table-2:  #5F9273;
+  --nav-bg:   #2A4E3B;
   --paper:    #F7F5ED;
   --panel:    #ECE7D8;
   --ink:      #1C2620;
   --ink-60:   #4C574D;
-  --slate:    #2F7A80;
-  --slate-d:  #1F5459;
+  --slate:    #2F8F5C;
+  --slate-d:  #1E6640;
   --gold:     #C98A45;
   --gold-d:   #9C6A31;
   --clay:     #93602E;
@@ -53,10 +54,10 @@ body::before{
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(560px 420px at 88% -6%, rgba(47,122,128,0.30), transparent 62%),
-    radial-gradient(620px 460px at 6% 108%, rgba(201,138,69,0.14), transparent 60%),
-    linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px),
+    radial-gradient(560px 420px at 88% -6%, rgba(255,255,255,0.16), transparent 62%),
+    radial-gradient(620px 460px at 6% 108%, rgba(201,138,69,0.16), transparent 60%),
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px),
     linear-gradient(135deg, var(--table) 0%, var(--table-2) 100%);
   background-size: auto, auto, 84px 84px, 84px 84px, auto;
 }
@@ -69,7 +70,7 @@ body::before{
   margin: 2.4rem auto 3rem;
   background: var(--paper);
   border: 1px solid rgba(0,0,0,0.06);
-  box-shadow: 0 30px 70px -20px rgba(4,10,8,0.55), 0 2px 0 rgba(255,255,255,0.4) inset;
+  box-shadow: 0 24px 55px -18px rgba(18,38,26,0.4), 0 2px 0 rgba(255,255,255,0.4) inset;
   position: relative;
 }
 .sheet::before{
@@ -143,10 +144,10 @@ a:focus-visible, button:focus-visible{ outline: 2px solid var(--slate-d); outlin
   position: sticky;
   top: 0;
   z-index: 30;
-  background: rgba(22,35,31,0.92);
+  background: rgba(42,78,59,0.94);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 .sitehead-inner{
   max-width: 74rem;
