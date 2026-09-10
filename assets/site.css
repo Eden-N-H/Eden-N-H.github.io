@@ -222,6 +222,26 @@ section + section{ border-top: 1px solid var(--line); }
   line-height: 0.82; padding: 0.06em 0.09em 0 0; color: var(--slate-d);
 }
 
+/* ---------- landing page portrait ---------- */
+.landing-grid{
+  display: grid;
+  grid-template-columns: 1fr 15.5rem;
+  gap: 3.2rem;
+  align-items: start;
+}
+.landing-photo .frame{ padding: 7px; }
+.landing-photo img{
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 760 / 975;
+  object-fit: cover;
+}
+@media (max-width: 760px){
+  .landing-grid{ grid-template-columns: 1fr; }
+  .landing-photo{ order: -1; max-width: 13rem; margin: 0 auto 1.6rem; }
+}
+
 /* ---------- source-document callout ---------- */
 .doc-title{
   font-family: 'IBM Plex Mono', monospace;
